@@ -16,8 +16,10 @@ import BurningToken from "./components/BurningToken";
 import DelegationToken from "./components/DelegationToken";
 
 //ui components
+import Image from "next/image";
 import { Button } from "pixel-retroui";
 import CreateMint from "./components/CreateMint";
+import { Bubble } from "pixel-retroui";
 
 export default function Home() {
   const { publicKey, disconnect } = useWallet();
@@ -54,15 +56,10 @@ export default function Home() {
                 Token Forge
               </span>
             </a>
-
-            <div
-              className="hidden w-full md:block md:w-auto"
-              id="navbar-default"
-            >
-              <div className="border border-white-900 p-2 rounded">
-                <BalanceDisplay />
-              </div>
-            </div>
+            <Image width="100" height="100" src="/nyancat.gif" alt="nyancat" />
+            <Bubble direction="left">
+              {publicKey ? <BalanceDisplay /> : <p>Connect to wallet</p>}
+            </Bubble>
           </div>
         </nav>
       </div>
@@ -76,7 +73,6 @@ export default function Home() {
       </div>
       {publicKey && (
         <div>
-          <BalanceDisplay />
           {!mintAddress ? (
             <div>
               <CreateMint onMintCreated={handleMintCreated} />

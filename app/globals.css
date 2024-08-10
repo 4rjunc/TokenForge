@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 @import "pixel-retroui/dist/index.css";
+
+body {
+  background-image: url("/landscape-city.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
