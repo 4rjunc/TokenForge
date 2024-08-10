@@ -9,3 +9,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+h2 {
+  @apply text-2xl font-bold;
+}

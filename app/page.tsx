@@ -96,7 +96,7 @@ export default function Home() {
                 <AccordionItem value="cta">
                   <AccordionTrigger>Create Token Account</AccordionTrigger>
                   <AccordionContent>
-                    <CreateTokenAccount />
+                    <CreateTokenAccount mintAddress={mintAddress} />
                   </AccordionContent>
                 </AccordionItem>
 
