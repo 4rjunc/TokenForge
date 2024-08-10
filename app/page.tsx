@@ -110,7 +110,7 @@ export default function Home() {
                 <AccordionItem value="transferToken">
                   <AccordionTrigger>Transfer Token</AccordionTrigger>
                   <AccordionContent>
-                    <TransferToken />
+                    <TransferToken mintAddress={mintAddress} />
                   </AccordionContent>
                 </AccordionItem>
 
