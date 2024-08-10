@@ -20,6 +20,12 @@ import Image from "next/image";
 import { Button } from "pixel-retroui";
 import CreateMint from "./components/CreateMint";
 import { Bubble } from "pixel-retroui";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "pixel-retroui";
 
 export default function Home() {
   const { publicKey, disconnect } = useWallet();
@@ -79,13 +85,49 @@ export default function Home() {
               <CreateMint onMintCreated={handleMintCreated} />
             </div>
           ) : (
-            <div className="flex flex-col justify-evenly items-center h-screen">
-              <CreateTokenAccount />
+            <div className="w-full flex flex-col items-center gap-10 px-48 justify-center">
               <TokenBalanace />
-              <MintToken />
-              <TransferToken />
-              <BurningToken />
-              <DelegationToken />
+              <Accordion
+                bg="#ddceb4"
+                textColor="#30210b"
+                borderColor="#30210b"
+                shadowColor="#30210b"
+              >
+                <AccordionItem value="cta">
+                  <AccordionTrigger>Create Token Account</AccordionTrigger>
+                  <AccordionContent>
+                    <CreateTokenAccount />
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="mintToken">
+                  <AccordionTrigger>Mint Token</AccordionTrigger>
+                  <AccordionContent>
+                    <MintToken />
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="transferToken">
+                  <AccordionTrigger>Transfer Token</AccordionTrigger>
+                  <AccordionContent>
+                    <TransferToken />
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="burnToken">
+                  <AccordionTrigger>Burn Token</AccordionTrigger>
+                  <AccordionContent>
+                    <BurningToken />
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="deledationToken">
+                  <AccordionTrigger>Delegation Token</AccordionTrigger>
+                  <AccordionContent>
+                    <DelegationToken />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           )}
         </div>
