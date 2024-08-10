@@ -103,7 +103,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
           textColor="black"
           borderColor="black"
         >
-          {isProcessing ? "Processing..." : "Create Mint"}
+          {isProcessing ? "Processing..." : "Click Me!"}
         </Button>
         {message && <p className="mt-2 text-sm">{message}</p>}
       </Card>{" "}
