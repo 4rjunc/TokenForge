@@ -18,6 +18,7 @@ import {
 } from "@solana/spl-token";
 
 //ui components
+import Image from "next/image";
 import { Button } from "pixel-retroui";
 import { Card } from "pixel-retroui";
 import { Input } from "pixel-retroui";
@@ -106,6 +107,12 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
         </Button>
         {message && <p className="mt-2 text-sm">{message}</p>}
       </Card>{" "}
+      <Image
+        src="/sonic-sonic-waiting.gif"
+        alt="sonic-sonic-waiting"
+        width="231"
+        height="271"
+      />
     </div>
   );
 };

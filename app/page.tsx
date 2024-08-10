@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <main className="font-minecraft ">
       <div className="p-2">
-        <nav className="rounded-xl border-gray-200 bg-gray-900">
+        <nav className="rounded-xl h-full w-full bg-red-500  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-gray-100">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a
               href="https://github.com/4rjunc"
@@ -64,11 +64,12 @@ export default function Home() {
         </nav>
       </div>
       <div className="flex flex-col items-center mt-2">
-        <p className="font-semibold">token forge ⚔️ to create spl-token!</p>
-        <Button className="mt-1" onClick={handleWalletAction}>
-          {publicKey
-            ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}`
-            : "Connect Wallet 💳"}
+        <p className="font-bold text-2xl mb-2">create spl-token!</p>
+        <Button className="mb-4" onClick={handleWalletAction}>
+          <span className="text-xl">
+            {" "}
+            {publicKey ? `${publicKey.toBase58()}` : "Connect Wallet 💳"}
+          </span>
         </Button>
       </div>
       {publicKey && (
