@@ -55,10 +55,10 @@ export default function Home() {
             >
               <img
                 src="https://cryptologos.cc/logos/solana-sol-logo.svg"
-                className="h-8"
-                alt="Flowbite Logo"
+                className="h-20 w-20"
+                alt="solana Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+              <span className="self-center text-4xl font-semibold whitespace-nowrap text-white">
                 Token Forge
               </span>
             </a>
@@ -103,7 +103,7 @@ export default function Home() {
                 <AccordionItem value="mintToken">
                   <AccordionTrigger>Mint Token</AccordionTrigger>
                   <AccordionContent>
-                    <MintToken />
+                    <MintToken mintAddress={mintAddress} />
                   </AccordionContent>
                 </AccordionItem>
 

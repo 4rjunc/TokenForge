@@ -60,7 +60,7 @@ const CreateTokenAccount = ({ mintAddress }: CreateTokenAccountProps) => {
   };
 
   return (
-    <div className="flex justify-evenly">
+    <div className="flex gap-2 justify-evenly">
       <div>
         <Image
           alt="monkey-calulate"
