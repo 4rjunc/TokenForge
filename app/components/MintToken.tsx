@@ -22,7 +22,7 @@ interface MintTokenProps {
 
 const MintToken = ({ mintAddress, decimal }: MintTokenProps) => {
   const { publicKey, sendTransaction } = useWallet();
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<string>("");
   const { connection } = useConnection();
   const [message, setMessage] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -39,7 +39,7 @@ const MintToken = ({ mintAddress, decimal }: MintTokenProps) => {
       const ata = await getAssociatedTokenAddress(mintPublicKey, publicKey);
 
       //create a transaction object to be send to solana chain
-      const amountToMint: number = amount * Math.pow(10, decimal);
+      const amountToMint: number = Number(amount) * Math.pow(10, decimal);
       console.log("amount", amount, "decimal", decimal, "amount", amountToMint);
       const transaction = new Transaction().add(
         createMintToInstruction(mintPublicKey, ata, publicKey, amountToMint),
