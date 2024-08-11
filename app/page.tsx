@@ -122,7 +122,7 @@ export default function Home() {
                 <AccordionItem value="burnToken">
                   <AccordionTrigger>Burn Token</AccordionTrigger>
                   <AccordionContent>
-                    <BurningToken />
+                    <BurningToken mintAddress={mintAddress} decimal={decimal} />
                   </AccordionContent>
                 </AccordionItem>
 
