@@ -30,7 +30,7 @@ interface CreateMintProps {
 const CreateMint = ({ onMintCreated }: CreateMintProps) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const [decimals, setDecimals] = useState<number>(9);
+  const [decimals, setDecimals] = useState<string>("9");
   const [message, setMessage] = useState<string>("");
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -55,7 +55,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
         }),
         createInitializeMintInstruction(
           mint.publicKey,
-          decimals,
+          Number(decimals),
           publicKey,
           publicKey,
         ),
@@ -68,7 +68,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
 
       const mintAddress = mint.publicKey.toBase58();
       setMessage(`Mint created successfully: ${mintAddress}`);
-      onMintCreated(mintAddress, decimals);
+      onMintCreated(mintAddress, Number(decimals));
     } catch (error: any) {
       setMessage(`Error creating mint: ${error.message}`);
     } finally {
