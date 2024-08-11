@@ -24,13 +24,13 @@ import { Card } from "pixel-retroui";
 import { Input } from "pixel-retroui";
 
 interface CreateMintProps {
-  onMintCreated: (mintAddress: string) => void;
+  onMintCreated: (mintAddress: string, decimal: number) => void;
 }
 
 const CreateMint = ({ onMintCreated }: CreateMintProps) => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
-  const [decimals, setDecimals] = useState<string>("9");
+  const [decimals, setDecimals] = useState<number>(9);
   const [message, setMessage] = useState<string>("");
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -55,7 +55,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
         }),
         createInitializeMintInstruction(
           mint.publicKey,
-          Number(decimals),
+          decimals,
           publicKey,
           publicKey,
         ),
@@ -68,7 +68,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
 
       const mintAddress = mint.publicKey.toBase58();
       setMessage(`Mint created successfully: ${mintAddress}`);
-      onMintCreated(mintAddress);
+      onMintCreated(mintAddress, decimals);
     } catch (error: any) {
       setMessage(`Error creating mint: ${error.message}`);
     } finally {

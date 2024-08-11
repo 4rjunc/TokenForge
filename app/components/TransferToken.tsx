@@ -18,9 +18,10 @@ import { Input } from "pixel-retroui";
 
 interface TransferTokenProps {
   mintAddress: string;
+  decimal: number;
 }
 
-const TransferToken = ({ mintAddress }: TransferTokenProps) => {
+const TransferToken = ({ mintAddress, decimal }: TransferTokenProps) => {
   const { publicKey, sendTransaction } = useWallet();
   const [amount, setAmount] = useState<string>("");
   const [transferAddress, setTransferAddress] = useState<string>("");
@@ -63,13 +64,13 @@ const TransferToken = ({ mintAddress }: TransferTokenProps) => {
         );
       }
 
-      console.log("ammout", amount, BigInt(amount));
+      const amountToTransfer: number = Number(amount) * Math.pow(10, decimal);
       transaction.add(
         createTransferInstruction(
           sourceAccount,
           destinationAccount,
           publicKey,
-          BigInt(amount),
+          amountToTransfer,
         ),
       );
 
@@ -101,7 +102,7 @@ const TransferToken = ({ mintAddress }: TransferTokenProps) => {
           min="0"
           step="1"
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount to send"
+          placeholder="Amount token to send"
         />
 
         <Button className="mt-4" onClick={handleTokenTranfer}>
@@ -112,7 +113,7 @@ const TransferToken = ({ mintAddress }: TransferTokenProps) => {
       <div>
         <Image
           alt="monkey-calulate"
-          src="/fuckin-send-it.gif"
+          src="/excited-money.gif"
           width="250"
           height="220"
           className="rounded-lg"

@@ -31,6 +31,7 @@ export default function Home() {
   const { publicKey, disconnect } = useWallet();
   const { setVisible } = useWalletModal();
   const [mintAddress, setMintAddress] = useState<string | null>(null);
+  const [decimal, setDecimal] = useState<number>(0);
 
   const handleWalletAction = () => {
     if (publicKey) {
@@ -40,8 +41,9 @@ export default function Home() {
     }
   };
 
-  const handleMintCreated = (address: string) => {
+  const handleMintCreated = (address: string, decimal: number) => {
     setMintAddress(address);
+    setDecimal(decimal);
   };
 
   return (
@@ -103,14 +105,17 @@ export default function Home() {
                 <AccordionItem value="mintToken">
                   <AccordionTrigger>Mint Token</AccordionTrigger>
                   <AccordionContent>
-                    <MintToken mintAddress={mintAddress} />
+                    <MintToken mintAddress={mintAddress} decimal={decimal} />
                   </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="transferToken">
                   <AccordionTrigger>Transfer Token</AccordionTrigger>
                   <AccordionContent>
-                    <TransferToken mintAddress={mintAddress} />
+                    <TransferToken
+                      mintAddress={mintAddress}
+                      decimal={decimal}
+                    />
                   </AccordionContent>
                 </AccordionItem>
 
