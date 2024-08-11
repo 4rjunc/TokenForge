@@ -88,7 +88,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="w-full flex flex-col items-center gap-10 px-48 justify-center">
-              <TokenBalanace />
+              <TokenBalanace mintAddress={mintAddress} decimal={decimal} />
               <Accordion
                 bg="#ddceb4"
                 textColor="#30210b"
