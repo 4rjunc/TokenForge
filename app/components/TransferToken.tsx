@@ -102,7 +102,7 @@ const TransferToken = ({ mintAddress, decimal }: TransferTokenProps) => {
           min="0"
           step="1"
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Amount token to send"
+          placeholder="Amount of token to send"
         />
 
         <Button className="mt-4" onClick={handleTokenTranfer}>

@@ -129,7 +129,10 @@ export default function Home() {
                 <AccordionItem value="deledationToken">
                   <AccordionTrigger>Delegation Token</AccordionTrigger>
                   <AccordionContent>
-                    <DelegationToken />
+                    <DelegationToken
+                      mintAddress={mintAddress}
+                      decimal={decimal}
+                    />
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
