@@ -78,9 +78,7 @@ export const Token = () => {
         await connection.getRecentBlockhash()
       ).blockhash;
 
-      const signature = await sendTransaction(transaction, connection, {
-        signers: [mintKeypair],
-      });
+      const signature = await sendTransaction(transaction, connection);
 
       await connection.confirmTransaction(signature, "confirmed");
       setMint(mintKeypair.publicKey);

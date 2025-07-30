@@ -61,9 +61,7 @@ const CreateMint = ({ onMintCreated }: CreateMintProps) => {
         ),
       );
 
-      const signature = await sendTransaction(transaction, connection, {
-        signers: [mint],
-      });
+      const signature = await sendTransaction(transaction, connection);
       await connection.confirmTransaction(signature, "confirmed");
 
       const mintAddress = mint.publicKey.toBase58();
