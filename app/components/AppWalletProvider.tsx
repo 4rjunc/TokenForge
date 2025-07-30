@@ -1,38 +1,40 @@
 "use client";
 
-import React, { useMemo } from "react";
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { clusterApiUrl } from "@solana/web3.js";
-// import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
+import React from "react";
+import { PrivyProvider } from "@privy-io/react-auth";
 
-// Default styles that can be overridden by your app
-require("@solana/wallet-adapter-react-ui/styles.css");
-
+/**
+ * Top-level provider wiring Privy into the Next.js app.
+ *
+ * For the Privy dashboard, generate an application and copy its `APP_ID`
+ * into an environment variable named `NEXT_PUBLIC_PRIVY_APP_ID`.
+ */
 export default function AppWalletProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const wallets = useMemo(
-    () => [
-      // manually add any legacy wallet adapters here
-      // new UnsafeBurnerWalletAdapter(),
-    ],
-    [network],
-  );
+  const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+
+  if (!appId) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "Privy APP_ID env-var missing – set NEXT_PUBLIC_PRIVY_APP_ID in your env to enable wallet connectivity.",
+    );
+  }
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <PrivyProvider
+      appId={appId ?? ""}
+      config={{
+        appearance: {
+          walletChainType: "solana-only",
+        },
+        loginMethods: ["wallet"],
+        embeddedWallets: { createOnLogin: "users-without-wallets" },
+      }}
+    >
+      {children}
+    </PrivyProvider>
   );
 }

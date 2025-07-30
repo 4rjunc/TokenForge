@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // for waller actions
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from "../hooks/wallet";
 import {
   PublicKey,
   Keypair,

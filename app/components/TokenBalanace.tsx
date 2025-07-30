@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // wallet actions
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from "../hooks/wallet";
 import { PublicKey } from "@solana/web3.js";
 
 //spl token

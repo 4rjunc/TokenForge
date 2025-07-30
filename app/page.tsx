@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 //for wallet connection
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet, useWalletModal, WalletMultiButton } from "./hooks/wallet";
+
+
 
 //components for mind actions
 import BalanceDisplay from "./components/BalanceDisplay";

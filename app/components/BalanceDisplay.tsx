@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // waller actions
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { useWallet, useConnection } from "../hooks/wallet";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
 const BalanceDisplay = () => {
