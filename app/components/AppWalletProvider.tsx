@@ -2,6 +2,7 @@
 
 import React from "react";
 import { PrivyProvider } from "@privy-io/react-auth";
+import { toSolanaWalletConnectors } from "@privy-io/react-auth/solana";
 
 /**
  * Top-level provider wiring Privy into the Next.js app.
@@ -28,10 +29,21 @@ export default function AppWalletProvider({
       appId={appId ?? ""}
       config={{
         appearance: {
+          // Limit wallet-related UIs to Solana only
           walletChainType: "solana-only",
         },
-        loginMethods: ["wallet"],
-        embeddedWallets: { createOnLogin: "users-without-wallets" },
+        // Create embedded Solana wallets for users who don't already have a wallet
+        embeddedWallets: {
+          solana: {
+            createOnLogin: "users-without-wallets",
+          },
+        },
+        // Enable popular Solana browser wallets (desktop & mobile)
+        externalWallets: {
+          solana: {
+            connectors: toSolanaWalletConnectors(),
+          },
+        },
       }}
     >
       {children}
