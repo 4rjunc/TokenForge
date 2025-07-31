@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { PublicKey, Transaction, Connection, clusterApiUrl } from "@solana/web3.js";
 import { usePrivy } from "@privy-io/react-auth";
 import { useSolanaWallets, useSendTransaction } from "@privy-io/react-auth/solana";
@@ -18,6 +18,23 @@ export function useConnection() {
 
 export function useWallet() {
   const { login, logout, authenticated } = usePrivy();
+
+  // --- Phantom Android in-app browser fix --------------------------------
+  useEffect(() => {
+    if (authenticated) {
+      if (typeof window !== "undefined") {
+        const ua = navigator.userAgent || "";
+        const isAndroid = /Android/i.test(ua);
+        const isPhantom = /Phantom/i.test(ua);
+        if (isAndroid && isPhantom) {
+          const intentUrl =
+            `intent://${location.host}${location.pathname}${location.search}` +
+            `#Intent;scheme=https;package=app.vercel.token_forge_delta.twa;end`;
+          window.location.href = intentUrl;
+        }
+      }
+    }
+  }, [authenticated]);
   const { wallets } = useSolanaWallets();
   const { sendTransaction } = useSendTransaction();
 
